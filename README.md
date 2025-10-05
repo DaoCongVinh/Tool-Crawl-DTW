@@ -123,7 +123,7 @@ Tool-Crawl-DTW/
 
 ## 📞 Hỗ trợ
 
-- 📧 Email: [your-email@example.com]
+- 📧 Email: [22130325@st.hcmuaf.edu.vn]
 - 🐛 Issues: [GitHub Issues](https://github.com/DaoCongVinh/Tool-Crawl-DTW/issues)
 - 📖 Wiki: [GitHub Wiki](https://github.com/DaoCongVinh/Tool-Crawl-DTW/wiki)
 
