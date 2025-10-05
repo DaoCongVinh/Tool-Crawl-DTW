@@ -1,0 +1,22 @@
+{
+    "video": {
+        "VideoID": "7234567890123456789",
+        "TextContent": "Dance challenge mới siêu hot 🔥 #dance #trending #viral",
+        "Duration": 45,
+        "CreateTime": "2025-01-05 10:30:00",
+        "WebVideoUrl": "https://www.tiktok.com/@user123/video/7234567890123456789",
+        "Author": {
+            "AuthorID": "user123",
+            "Name": "TikToker_VN",
+            "Avatar": "https://p16-sign-va.tiktokcdn.com/avatar.jpg"
+        },
+        "Interactions": {
+            "DiggCount": 15420,
+            "PlayCount": 234567,
+            "ShareCount": 1234,
+            "CommentCount": 567,
+            "CollectCount": 234,
+            "TimeLog": "2025-01-05 15:45:00"
+        }
+    }
+}
