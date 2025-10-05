@@ -1,170 +1,135 @@
-# 🎵 TikTok Video Crawler System
+# TikTok Video Crawler System
 
-Hệ thống crawl và lưu trữ dữ liệu video TikTok vào MySQL database.
+[![GitHub stars](https://img.shields.io/github/stars/DaoCongVinh/Tool-Crawl-DTW)](https://github.com/DaoCongVinh/Tool-Crawl-DTW/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/DaoCongVinh/Tool-Crawl-DTW)](https://github.com/DaoCongVinh/Tool-Crawl-DTW/network)
+[![GitHub issues](https://img.shields.io/github/issues/DaoCongVinh/Tool-Crawl-DTW)](https://github.com/DaoCongVinh/Tool-Crawl-DTW/issues)
 
-## 📋 Yêu cầu hệ thống
+Hệ thống crawl và phân tích dữ liệu video TikTok với MySQL database.
 
+## 🚀 Tính năng chính
+
+- 🎯 **Crawl video trending** từ TikTok
+- 👤 **Crawl theo user cụ thể** (nhập username)
+- 🏷️ **Crawl theo hashtag** 
+- 📊 **Thống kê và phân tích** dữ liệu
+- 🔍 **Tìm kiếm video** theo từ khóa
+- 💾 **Lưu trữ MySQL** với schema tối ưu
+
+## 📦 Cài đặt
+
+### Yêu cầu hệ thống
 - Python 3.7+
 - MySQL Server
-- Thư viện: `mysql-connector-python`
+- Git
 
-## 🚀 Cài đặt
-
+### Bước 1: Clone repository
 ```bash
-pip install mysql-connector-python
+git clone https://github.com/DaoCongVinh/Tool-Crawl-DTW.git
+cd Tool-Crawl-DTW
 ```
 
-## 📁 Cấu trúc files
-
-```
-📁 DataWarehouse/
-├── 📄 models_mysql.py         # Tạo database và tables
-├── 📄 tiktok_scraper.py       # Crawler chính với menu
-├── 📄 crawl_user.py           # Crawler user TikTok cụ thể
-├── 📄 quick_crawl.py          # Crawler nhanh
-├── 📄 view_data.py            # Xem dữ liệu đã crawl
-├── 📄 reset_db.py             # Reset database schema
-├── 📄 config.py               # Cấu hình hệ thống
-├── 📄 scraper_mysql.py        # Script cũ (đã cập nhật)
-└── 📄 sample_video.json       # Dữ liệu mẫu
+### Bước 2: Cài đặt dependencies
+```bash
+pip install -r requirements.txt
 ```
 
-## 🗄️ Database Schema
+### Bước 3: Cấu hình MySQL
+- Khởi động MySQL server
+- Tạo database `video_crawler`
+- Cập nhật thông tin kết nối trong `config.py`
 
-### 🏗️ Tables được tạo:
+## 🎮 Sử dụng
 
-#### 👥 Authors
-- `authorID` (Primary Key) - VARCHAR(255)
-- `name` - Tên tác giả
-- `avatar` - Link avatar
-
-#### 📹 Videos  
-- `videoID` (Primary Key) - BIGINT
-- `authorID` (Foreign Key) - VARCHAR(255)
-- `textContent` - Nội dung video
-- `duration` - Thời lượng (giây)
-- `createTime` - Thời gian tạo
-- `webVideoUrl` - Link video
-
-#### 💬 VideoInteractions
-- `interactionID` (Auto Increment Primary Key)
-- `videoID` (Foreign Key)
-- `diggCount` - Số lượt thích
-- `playCount` - Số lượt xem
-- `shareCount` - Số lượt chia sẻ
-- `commentCount` - Số bình luận
-- `collectCount` - Số lưu video
-- `timeLog` - Thời gian ghi nhận
-
-## 🔧 Hướng dẫn sử dụng
-
-### 1️⃣ Khởi tạo Database
-
+### 1. Khởi tạo Database
 ```bash
 python models_mysql.py
 ```
 
-### 2️⃣ Crawl videos với menu tương tác
-
+### 2. Crawl video trending
 ```bash
 python tiktok_scraper.py
+# Chọn option 1, nhập số lượng video
 ```
 
-**Chức năng:**
-- ✅ Crawl video trending
-- ✅ Crawl theo hashtag
-- ✅ Crawl theo user
-- ✅ Tùy chọn số lượng video
-
-### 3️⃣ Crawl nhanh (đơn giản)
-
-```bash
-python quick_crawl.py
-```
-
-### 4️⃣ Crawl video từ user cụ thể
-
+### 3. Crawl từ user cụ thể
 ```bash
 python crawl_user.py
+# Nhập username: kplus.sports_official
+# Chọn số lượng video: 20
 ```
 
-**Tính năng đặc biệt:**
-- 🎯 Nhập username TikTok cụ thể (vd: kplus.sports_official)
-- 📊 Chọn số lượng video (1-50)
-- ✅ Xác nhận trước khi crawl
-- 📹 Crawl video với nội dung phù hợp user
-
-### 5️⃣ Xem dữ liệu đã crawl
-
+### 4. Xem dữ liệu
 ```bash
 python view_data.py
 ```
 
-**Chức năng:**
-- 📊 Thống kê tổng quan
-- 🆕 Video mới nhất  
-- 🔍 Tìm kiếm theo từ khóa
-
-## ⚙️ Cấu hình
-
-Chỉnh sửa file `config.py` để thay đổi:
-- Thông tin database
-- Delay giữa requests
-- Giới hạn số lượng crawl
-
-## 🎯 Tính năng chính
-
-### ✅ Đã hoàn thành:
-- [x] Kết nối MySQL
-- [x] Tạo database schema (hỗ trợ authorID dạng string)
-- [x] Crawl dữ liệu mẫu TikTok
-- [x] Lưu trữ Authors, Videos, Interactions
-- [x] Menu tương tác
-- [x] Crawl video từ user TikTok cụ thể ⭐NEW⭐
-- [x] Xem thống kê dữ liệu
-- [x] Tìm kiếm video
-- [x] Chọn số lượng video crawl
-- [x] Validate username format
-
-### 🔄 Cần phát triển thêm:
-- [ ] Kết nối TikTok API thực tế
-- [ ] Proxy rotation
-- [ ] Rate limiting
-- [ ] Error handling nâng cao
-- [ ] Export dữ liệu (CSV, JSON)
-- [ ] Dashboard web
-
-## 🚨 Lưu ý quan trọng
-
-⚠️ **Phiên bản hiện tại sử dụng dữ liệu mẫu**
-
-Để crawl dữ liệu thực từ TikTok, bạn cần:
-1. 🔑 TikTok API key (chính thức)
-2. 🕷️ Web scraping tools (Selenium, Scrapy)
-3. 🔄 Proxy services
-4. 📜 Tuân thủ Terms of Service
-
-## 📊 Ví dụ output
+## 📁 Cấu trúc Project
 
 ```
-🚀 Bắt đầu crawl 10 video từ TikTok...
-📹 Video 1/10: TikToker_1 - Dance challenge mới siêu hot 🔥...
-✅ Đã lưu video 7234567890123456789 vào MySQL thành công!
+Tool-Crawl-DTW/
+├── 📄 models_mysql.py     # Database models
+├── 📄 tiktok_scraper.py   # Main scraper
+├── 📄 crawl_user.py       # User-specific crawler
+├── 📄 view_data.py        # Data viewer
+├── 📄 config.py           # Configuration
+├── 📄 requirements.txt    # Dependencies
+└── 📄 README.md           # Documentation
+```
+
+## 🗄️ Database Schema
+
+### Authors Table
+- `authorID` (VARCHAR(255), Primary Key)
+- `name` (VARCHAR(255))
+- `avatar` (TEXT)
+
+### Videos Table  
+- `videoID` (BIGINT, Primary Key)
+- `authorID` (VARCHAR(255), Foreign Key)
+- `textContent` (TEXT)
+- `duration` (INT)
+- `createTime` (DATETIME)
+- `webVideoUrl` (TEXT)
+
+### VideoInteractions Table
+- `interactionID` (INT, Auto Increment)
+- `videoID` (BIGINT, Foreign Key)
+- `diggCount`, `playCount`, `shareCount`, etc.
+
+## 📊 Ví dụ Output
+
+```
+🚀 Bắt đầu crawl 10 video từ @kplus.sports_official...
+✅ Video 1/10: Dance cover trending 💃 #dance #viral - Saved!
+✅ Video 2/10: Review sản phẩm hot 📱 #review #unboxing - Saved!
 
 📊 Kết quả: 10/10 video đã lưu thành công!
 ```
 
+## ⚠️ Lưu ý quan trọng
+
+- 🔒 **Tuân thủ Terms of Service** của TikTok
+- 📝 **Phiên bản hiện tại** sử dụng dữ liệu mẫu
+- 🔑 **API thực tế** cần TikTok Developer Account
+- ⏱️ **Rate limiting** để tránh bị block
+
 ## 🤝 Đóng góp
 
-Mọi đóng góp và cải thiện đều được hoan nghênh!
+1. Fork repository
+2. Tạo feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Tạo Pull Request
 
 ## 📞 Hỗ trợ
 
-Nếu gặp vấn đề, hãy kiểm tra:
-1. ✅ MySQL server đang chạy
-2. ✅ Thông tin kết nối database đúng
-3. ✅ Python packages đã cài đặt
-4. ✅ Quyền truy cập database
+- 📧 Email: [your-email@example.com]
+- 🐛 Issues: [GitHub Issues](https://github.com/DaoCongVinh/Tool-Crawl-DTW/issues)
+- 📖 Wiki: [GitHub Wiki](https://github.com/DaoCongVinh/Tool-Crawl-DTW/wiki)
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
-*Được tạo bởi GitHub Copilot* 🤖
+⭐ **Star** repository nếu bạn thấy hữu ích!
